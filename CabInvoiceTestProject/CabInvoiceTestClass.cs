@@ -7,22 +7,23 @@ namespace CabInvoiceTestProject
     public class CabInvoiceTestClass
     {
         [TestMethod]
-        //[DataRow("Invalid distance")]
-        //[DataRow("null object")]
         [DataRow("")]
-        public void Given_RideDetails_Should_Return_TotalFare(string expectedMsg)
+        public void Given_MultipleRides_Should_Return_TotalFare(string expectedMsg)
         {
             try
             {
-                //Ride ride = null;
-                Ride ride = new Ride(5, 5, RideTypes.NORMAL);
+                Ride[] rides = new Ride[]
+                {
+                    new Ride( 5, 5, RideTypes.NORMAL ),
+                    new Ride( 2, 3, RideTypes.PREMIUM ),
+                };
                 InvoiceGenerator invoice = new InvoiceGenerator();
-                double actual = invoice.CalculateFare(ride);
-                Assert.AreEqual(55, actual);
+                double actual = invoice.CalculateFare(rides);
+                Assert.AreEqual(91, actual);
             }
             catch (CabInvoiceCustomException ex)
             {
-                Assert.AreEqual(ex.Message, expectedMsg);
+                Assert.AreEqual(expectedMsg, ex.Message);
             }
         }
     }
