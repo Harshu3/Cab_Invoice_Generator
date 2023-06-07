@@ -15,7 +15,7 @@ namespace CabInvoiceTestProject
                 Ride[] rides = new Ride[]
                 {
                     new Ride( 5, 5, RideTypes.NORMAL ),
-                    new Ride( 2, 3, RideTypes.PREMIUM ),
+                    new Ride( 2, 3, RideTypes.PREMIUM )
                 };
                 InvoiceGenerator invoice = new InvoiceGenerator();
                 double actual = invoice.CalculateFare(rides);
