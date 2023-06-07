@@ -32,7 +32,7 @@ namespace Cab_Invoice_Generator
             }
         }
 
-        public InvoiceSummary CalculateFare(Ride[] rides)
+        public double CalculateFare(Ride[] rides)
         {
             double totalFare = 0;
             try
@@ -41,7 +41,7 @@ namespace Cab_Invoice_Generator
                 {
                     totalFare += CalculateFare(ride);
                 }
-                return new InvoiceSummary(rides.Length, totalFare);
+                return totalFare;
             }
             catch (Exception ex)
             {

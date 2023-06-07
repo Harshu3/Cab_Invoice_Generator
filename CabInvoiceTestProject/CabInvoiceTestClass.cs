@@ -8,19 +8,18 @@ namespace CabInvoiceTestProject
     {
         [TestMethod]
         [DataRow("")]
-        public void Given_MultipleRides_Should_Return_InvoiceSummary(string expectedMsg)
+        public void Given_MultipleRides_Should_Return_TotalFare(string expectedMsg)
         {
             try
             {
                 Ride[] rides = new Ride[]
                 {
                     new Ride( 5, 5, RideTypes.NORMAL ),
-                    new Ride( 2, 3, RideTypes.PREMIUM ),
+                    new Ride( 2, 3, RideTypes.PREMIUM )
                 };
                 InvoiceGenerator invoice = new InvoiceGenerator();
-                InvoiceSummary expected = new InvoiceSummary(rides.Length, 91);
-                InvoiceSummary actual = invoice.CalculateFare(rides);
-                Assert.AreEqual(expected, actual);
+                double actual = invoice.CalculateFare(rides);
+                Assert.AreEqual(91, actual);
             }
             catch (CabInvoiceCustomException ex)
             {
